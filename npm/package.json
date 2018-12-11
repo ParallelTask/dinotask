@@ -1,0 +1,19 @@
+{
+  "name": "dinotask",
+  "version": "0.0.1",
+  "description": "A lightweight web-workers library for building multithreaded applications in browser.",
+  "homepage": "https://github.com/ParallelTask/dinotask",
+  "author": "Dinoloop Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ParallelTask/dinotask.git"
+  },
+  "keywords": [
+    "dinoloop",
+    "dinotask",
+    "js-multithread",
+    "web-workers",
+    "multi-threading"
+  ]
+}

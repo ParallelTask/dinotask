@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    <div id="container">
+        <button id="normal">Normal</button>
+        <button id="uifreeze">CPU Intensive - UI Freeze</button>
+        <button id="uiresponsive">CPU Intensive - UI Responsive</button>
+        <button id="heavyuiresponsive">CPU Intensive Heavy - UI Responsive</button>
+    </div>
+    <script src="../../dist/DinoTask.js"></script>
+    <script>
+
+        document.getElementById("normal").addEventListener("click", function () {
+            console.log("Normal => I take less time to execute");
+        });
+
+        document.getElementById("uifreeze").addEventListener("click", function () {
+            console.log("CPU Intensive - UI Freeze => I will start the CPU intensive and takes 5 to 10 seconds to execute...");
+
+            var startTime = new Date().getTime();
+
+            for (var j = 0; j < 1000; j++) {
+                for (var i = 0; i < 10000000; i++);
+            }
+            var endTime = new Date().getTime();
+            console.log("CPU Intensive - UI Freeze => Total time in seconds: " + ((endTime - startTime) / 1000));
+        });
+    </script>
+    <script>
+
+        var m = "hello world";
+        var n = "welcomes you";
+
+        DinoTask.functions = {
+            slice: function (a) {
+                return DinoTask.result("this is slice " + a);
+            },
+            split: function (a) {
+                return DinoTask.result(this.slice(a));
+            }
+        }
+
+        document.getElementById("uiresponsive").addEventListener("click", function () {
+
+            DinoTask.create([m, n], function (a, b) {
+
+                console.log("CPU Intensive - UI Responsive => I will start the CPU intensive and takes 5 to 10 seconds to execute...");
+
+                var result = DinoTask.functions.split(45);
+                var startTime = new Date().getTime();
+
+                for (var j = 0; j < 1000; j++) {
+                    for (var i = 0; i < 10000000; i++);
+                }
+
+                var endTime = new Date().getTime();
+
+                return "CPU Intensive - UI Responsive => Total time in seconds: " + ((endTime - startTime) / 1000) + " a: " + a + "split result : " + result;
+
+            }).run(function (result) {
+                console.log(result);
+            }).errorHandler(function (err) {
+                console.log(err);
+            });
+
+        });
+
+        document.getElementById("heavyuiresponsive").addEventListener("click", function () {
+
+            DinoTask.create([m, n], function (a, b) {
+
+                console.log("CPU Intensive - UI Responsive => I will start the CPU intensive and takes 25 to 30 seconds to execute...");
+
+                var result = DinoTask.functions.split(95);
+                var startTime = new Date().getTime();
+
+                for (var j = 0; j < 5000; j++) {
+                    for (var i = 0; i < 10000000; i++);
+                    if (j === 1000 || j === 2000 || j === 3000 || j === 4000 || j === 5000) {
+                        DinoTask.emit(j);
+                    }
+                }
+
+                var endTime = new Date().getTime();
+                return "CPU Intensive Heavy - UI Responsive => Total time in seconds: " + ((endTime - startTime) / 1000) + " a: " + a + "split result : " + result;
+
+            }).run(function (result) {
+                console.log('done emitting');
+                console.log(result);
+            }).addListener(function (result) {
+                console.log('Emitted ' + result);
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>

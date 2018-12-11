@@ -1,0 +1,33 @@
+{
+    "files.exclude": {
+        ".vs/": true,
+        "node_modules/": true,
+        "package-lock.json": true,
+        "LICENSE": true,
+        "**/*.js": {
+            "when": "$(basename).ts"
+        }
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "git.ignoreLimitWarning": true,
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "cSpell.words": [
+        "Dinoloop",
+        "blockmethods",
+        "dinotask",
+        "multithread",
+        "multithreaded"
+    ],
+    "cSpell.enabledLanguageIds": [
+        "javascript",
+        "json",
+        "jsonc",
+        "typescript",
+        "yml"
+    ]
+}
