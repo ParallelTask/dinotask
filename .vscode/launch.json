@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Debugger",
-            "program": "${workspaceFolder}/src/app/DinoTask.ts",
+            "program": "${workspaceFolder}/src/app/dinotask.ts",
             "preLaunchTask": "debugger",
             "outFiles": [
                 "${workspaceFolder}/dist/**/*.js"
